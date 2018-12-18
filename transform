@@ -1,0 +1,75 @@
+// 封装转换方法
+function transform(onlinevehiclecount){
+    // var onlinevehiclecount = 99892934;
+    var newNum = "";
+        numlength = "";
+    function PrefixInteger(num, n) {
+        // return (Array(n).join(0) + num).slice(-n);
+        newNum =  (Array(n).join(0) + num).slice(-n);
+        numlength = num.toString().length;
+        // console.log(newNum);        
+    }
+    PrefixInteger(onlinevehiclecount, 11)//11固定位
+    // console.log(newNum, numlength);//7
+    var remainder = parseInt(numlength/3);//2商
+    var quotient= parseInt(numlength%3);//2余数
+    
+    // console.log(quotient);
+    var newLength = "";
+    if (quotient == 0) {
+        newLength = remainder + numlength - 1;
+    }else{
+        newLength = remainder + numlength;
+    }   
+    // console.log(newLength);
+    // 截取位数  14 - newLength
+    var n = 14 - newLength ;      
+
+    // var str="000123598752";
+    var str=newNum.toString();
+
+    var re=/(?=(?!(\b))(\d{3})+$)/g;
+    str=str.replace(re,",");
+    // alert(str);
+    // console.log(typeof str); //string
+    // 分割str 11 + 3 = 14
+    // alert(str.slice(0,n))   //结果
+    // alert(str.slice(n,14))   //结果
+
+    var sfront = str.slice(0,n);
+    // console.log(sfront.split(","));//["00", "0"]
+    var strArr = sfront.split(",");
+    // console.log(strArr);
+    
+
+    var strr = "";
+     for (var i = 0; i < strArr.length-1; i++) {
+        // strr += strArr[i]+ ",";
+        // strArr.css({"color":"#162f93"});
+        // strr += strArr[i].fontcolor("#162f93").position("relative")+ "<span style='color:red;position:relative;top:0px'>,</span>";
+        // strr += strArr[i].CSS({"color":"#162f93"})+ "<span style='color:red;position:relative;top:0px'>,</span>";
+        strr += strArr[i]+ "<span class='test0'>,</span>";
+
+
+     }
+     strr += strArr[strArr.length-1];
+
+    //  console.log(  strr );
+     
+    //  去掉最后一个逗号(如果不需要去掉，就不用写)
+    //  if (strr.length > 0) {
+    //      strr = strr.substring(0, strr.length-1 );
+    //  }
+    
+    //  return strr;
+    //  console.log(strr);   
+    
+    var send = str.slice(n,14);
+  
+    // var inhtmlColor = "<p>" + sfront.fontcolor("#162f93") +  send.fontcolor("#ffd300") + "</p>";
+    // var inhtmlColor = "<span class='ceshi'>" +  send.fontcolor("#ffd300") + "</span>";
+    var inhtmlColor = "<span class='ceshi'>" +  send + "</span>";
+    // var inhtmlColor = "<span class='ceshi'>" +  onlinevehiclecount + "</span>";
+
+    return ssss = strr + inhtmlColor;
+} 
